@@ -18,13 +18,22 @@ programs and data. Then go on with the book, chapter by chapter.
 
 ## Stop 0: connect to SAS OnDemand (2 minutes)
 
-1. Press **F1**, type `connection profile`, and choose **DataStep Studio: Add New Connection Profile**.
-2. Choose **SAS OnDemand for Academics**, then your **home region**. It is in the web address of SAS Studio: an
-   address that starts with `https://odamid-euw1.oda.sas.com` means Europe 1 (`euw1`).
-3. Type your SAS OnDemand **user ID** or the **e-mail address** you sign in with, and choose **Connect Now**.
-4. Type your password.
+The first time you open the codespace:
 
-**What you should see:** after a few seconds, the status bar at the bottom shows that DataStep Studio is connected.
+1. If VS Code asks **Do you trust the authors of the files in this folder?**, choose **Trust Folder & Continue**.
+2. Press **F1**, type `reload window`, and choose **Developer: Reload Window**. This is needed once: DataStep Studio
+   is installed while the window opens, and only after the reload are the SAS programs in color.
+
+Then connect:
+
+3. Press **F1**, type `connection profile`, and choose **DataStep Studio: Add New Connection Profile**.
+4. Choose **SAS OnDemand for Academics**, then your **home region**. It is in the web address of SAS Studio: an
+   address that starts with `https://odamid-euw1.oda.sas.com` means Europe 1 (`euw1`).
+5. Type your SAS OnDemand **user ID** or the **e-mail address** you sign in with, and choose **Connect Now**.
+6. Type your password. It is kept for this codespace, so you type it once.
+
+**What you should see:** after a few seconds, the **Libraries** view on the right lists the libraries of your SAS
+session (WORK, SASHELP and others).
 
 Not sure about a step? Press **F1** and choose **DataStep Studio: Check Setup**: it says what is ready and what is
 missing.
@@ -59,7 +68,8 @@ Read more: [chapter 21, Look at your data](https://sas-for-clinical-programmers.
 
 Open [programs/04_first_last.sas](programs/04_first_last.sas).
 
-1. Put the cursor in the PROC SORT and choose **Run Step** in the ▷ menu at the top right of the program.
+1. Put the cursor in the PROC SORT and click **Run Step** in the title bar of the program. A list asks which part to
+   run: choose **PROC SORT**.
    **What you should see:** `NOTE: The data set WORK.AE2 has 7 observations`. Only that step ran.
 2. Press **F12**.
    **What you should see:** `WORK.AE2`, the data set the step just made, opens in the data viewer.
@@ -80,11 +90,13 @@ Still in [programs/04_first_last.sas](programs/04_first_last.sas):
 2. Press **F10** until the line `n_ae + 1;` has run.
    **What you should see:** on the first record `FIRST.usubjid = 1` and `n_ae = 1`.
 3. Click in the margin left of the line `IF LAST.usubjid THEN OUTPUT;` to set a breakpoint. Right-click the red dot,
-   choose **Edit Breakpoint**, and type `usubjid = "01-701-1023"`. Press **F5**.
+   choose **Edit Breakpoint…**, and type `usubjid = "01-701-1023"`. Press **F5** (or the **Continue** button ▷ in the
+   small debug toolbar at the top).
    **What you should see:** the debugger stops on the first record of subject 01-701-1023, and `n_ae = 1`: the
    counter started again, because `FIRST.usubjid = 1`.
 4. Press **F5** three more times.
    **What you should see:** `n_ae` goes 2, 3, 4. On the last stop `LAST.usubjid = 1`, so this record is written.
+5. Right-click the red dot and choose **Remove Breakpoint**. Press **F5** until the step ends.
 
 This is how SAS really reads your step, record by record. No `PUT _ALL_` lines, no run after run.
 Read more: [chapter 23, Debug a DATA step](https://sas-for-clinical-programmers.pages.dev/studio/debug-data-step/).
@@ -96,7 +108,8 @@ the subjects.
 
 1. Press **F4**.
    **What you should see:** three NOTEs in the log: `MILD: 187`, `MODERATE: 130` and `SEVERE: 29` subjects.
-2. Replace the comment on line 10 with `%pry(when=&i. = 3)` and press **F4** again.
+2. Replace the comment on line 10 with `%pry(when=&i. = 3)` and press **F4** again. (The codespace saves your change
+   by itself.)
    **What you should see:** the run stops in the third round of the loop. The **SAS Pry** terminal opens with the
    prompt `pry(%by_sev)>`.
 3. Type `ls` and press **Enter**.
@@ -113,32 +126,35 @@ Read more: [chapter 24, %pry](https://sas-for-clinical-programmers.pages.dev/stu
 
 ## Stop 6: debug a macro with breakpoints (5 minutes)
 
-Undo the change on line 10 of [programs/24_pry_practice.sas](programs/24_pry_practice.sas), so the comment is back.
+Undo the change on line 10 of [programs/24_pry_practice.sas](programs/24_pry_practice.sas) (**Ctrl+Z**, on a Mac
+**Cmd+Z**), so the comment is back.
 
 1. Put the cursor in `%by_sev` and click **Debug Macro** in the title bar.
    **What you should see:** a call pane above the macro, with its parameters `data` and `sevs` ready.
 2. Click in the margin of the line `%LET sev = %SCAN(&sevs., &i., %STR( ));`. Right-click the red dot, choose
-   **Edit Condition**, and type `&i. = 3`.
-3. Click **Start Debug**, then press **F5**.
+   **Edit Breakpoint…**, and type `&i. = 3`.
+3. Click the blue **Start Debug** button in the title bar of the call pane, then press **F5**.
    **What you should see:** the stop in round 3: `i = 3`, but `sev = MODERATE`. The `%LET` has not run yet.
 4. Press **F10**.
    **What you should see:** `sev = SEVERE`.
 5. In the **Debug Console**, type `%EVAL(&i. * 2)`.
    **What you should see:** `6`. The console works inside the paused macro.
-6. Remove the breakpoint and press **F5** to the end.
-   **What you should see:** each line of the macro shows how often it ran: `×3` inside the loop, `×1` before it.
+6. Right-click the red dot, choose **Remove Breakpoint**, and press **F5** to the end.
+   **What you should see:** at the end of each line of the macro, how often it ran: `×3` inside the loop, `×1`
+   before it.
 
 Read more: [chapter 25, Debug a macro](https://sas-for-clinical-programmers.pages.dev/studio/debug-macro/).
 
 ## Stop 7: write SAS faster (3 minutes)
 
-Make a new file: press **F1**, choose **File: New File**, name it `try.sas`. Then try these:
+Make a new file: in the **Explorer** on the left, right-click the folder **programs**, choose **New File…**, and
+type `try.sas`. Then try these:
 
 | Type | Then | You get |
 |---|---|---|
 | `proc so` | **Enter** | a PROC SORT step; **Tab** jumps to the next field |
-| `firstlast` | **Tab** | a DATA step with `BY`, `FIRST.` and `LAST.` |
-| `WHERE trt01p = '` | (wait) | the values of the column, most frequent first |
+| `firstlast` | wait until the suggestion shows, then **Tab** | a PROC SORT and a DATA step with `BY`, `FIRST.` and `LAST.` |
+| `DATA pbo; SET refadm.adsl; WHERE trt01p = '` | (wait) | the values of the column, most frequent first |
 | any procedure name | **Ctrl+Space** | the options of the procedure, with help |
 
 Read more: [chapter 22, Write faster](https://sas-for-clinical-programmers.pages.dev/studio/write-faster/).
@@ -170,7 +186,11 @@ The [cheat sheet](https://sas-for-clinical-programmers.pages.dev/studio/cheat-sh
 * **It is free for you.** Each free GitHub account includes a monthly amount of codespace time (at the time of
   writing 120 core hours, about 60 hours on this 2-core machine). Without a payment method on your GitHub account,
   you are never charged: the codespace stops when the free time is used up.
-* **In the browser, a few keys belong to the browser** (for example **Ctrl+W** closes the tab). The VS Code desktop
-  app has none of these limits: install DataStep Studio there from the Extensions view when you want to work on your
-  own computer.
+* **Your changes are saved by themselves.** To get a book program back as it was, open the **Source Control** view
+  on the left, right-click the file, and choose **Discard Changes**.
+* **In the browser, a few keys belong to the browser** (for example **Ctrl+W** closes the tab). On a Mac keyboard,
+  the F keys may need **fn** (for example **fn+F5**). The VS Code desktop app has none of these limits: install
+  DataStep Studio there from the Extensions view when you want to work on your own computer.
+* **The count at the top right of the SAS Log** (`0 error(s), 0 warning(s)`) is for the whole log of the session.
+  The **Suspicious Log** tab lists every ERROR, WARNING and notable NOTE, each with its program and line.
 * **Professional features** (both debuggers, `%pry`, and some of the writing help) are free during Early Access.

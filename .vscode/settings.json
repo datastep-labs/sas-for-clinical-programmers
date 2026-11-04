@@ -1,9 +1,10 @@
 {
   "workbench.editorAssociations": {
-    "START-HERE.md": "vscode.markdown.preview.editor",
-    "README.md": "vscode.markdown.preview.editor"
+    "*.md": "vscode.markdown.preview.editor"
   },
   "workbench.startupEditor": "none",
+  "workbench.editor.empty.hint": "hidden",
+  "chat.disableAIFeatures": true,
   "files.exclude": {
     "**/.devcontainer": true
   }

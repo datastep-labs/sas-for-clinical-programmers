@@ -8,9 +8,27 @@
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "customizations": {
     "vscode": {
-      "extensions": ["datastep-labs.datastep-studio"],
+      "extensions": [
+        "datastep-labs.datastep-studio",
+        "-vscjava.vscode-java-pack",
+        "-redhat.java",
+        "-vscjava.vscode-gradle",
+        "-vscjava.vscode-java-debug",
+        "-vscjava.vscode-java-test",
+        "-vscjava.vscode-maven",
+        "-vscjava.vscode-java-dependency",
+        "-ms-python.python",
+        "-ms-python.vscode-pylance",
+        "-ms-python.debugpy",
+        "-ms-python.autopep8",
+        "-ms-python.vscode-python-envs",
+        "-dbaeumer.vscode-eslint"
+      ],
       "settings": {
-        "datastepStudio.python": "/usr/local/bin/python3"
+        "datastepStudio.python": "/usr/local/bin/python3",
+        "workbench.editorAssociations": { "*.md": "vscode.markdown.preview.editor" },
+        "workbench.editor.empty.hint": "hidden",
+        "chat.disableAIFeatures": true
       }
     },
     "codespaces": {
