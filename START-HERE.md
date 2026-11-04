@@ -21,25 +21,24 @@ programs and data. Then go on with the book, chapter by chapter.
 
 ## Stop 0: connect to SAS OnDemand (2 minutes)
 
-The first time you open the codespace:
-
-1. If VS Code asks **Do you trust the authors of the files in this folder?**, choose **Trust Folder & Continue**.
-2. Press **F1**, type `reload window`, and choose **Developer: Reload Window**. This is needed once: DataStep Studio
-   is installed while the window opens, and only after the reload are the SAS programs in color.
+The first time you open the codespace, the window reloads once by itself after a few seconds, when DataStep Studio
+is installed. If VS Code asks **Do you trust the authors of the files in this folder?**, choose **Trust Folder &
+Continue**.
 
 Then connect:
 
-3. Press **F1**, type `connection profile`, and choose **DataStep Studio: Add New Connection Profile**.
-4. Choose **SAS OnDemand for Academics**, then your **home region**. It is in the web address of SAS Studio: an
+1. Press **F1**, type `connection profile`, and choose **DataStep Studio: Add New Connection Profile**.
+2. Choose **SAS OnDemand for Academics**, then your **home region**. It is in the web address of SAS Studio: an
    address that starts with `https://odamid-euw1.oda.sas.com` means Europe 1 (`euw1`).
-5. Type your SAS OnDemand **user ID** or the **e-mail address** you sign in with, and choose **Connect Now**.
-6. Type your password. It is kept for this codespace, so you type it once.
+3. Type your SAS OnDemand **user ID** or the **e-mail address** you sign in with, and choose **Connect Now**.
+4. Type your password. It is kept for this codespace, so you type it once.
 
 **What you should see:** after a few seconds, the **Libraries** view on the right lists the libraries of your SAS
 session (WORK, SASHELP and others).
 
 Not sure about a step? Press **F1** and choose **DataStep Studio: Check Setup**: it says what is ready and what is
-missing.
+missing. Are the SAS programs plain black text? Press **F1**, type `reload window`, and choose **Developer: Reload
+Window** once.
 
 ## Stop 1: get the study data (1 minute)
 
