@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Runs once when the codespace is made, so the reader finds everything ready:
 #   1. SASPy, in the version range DataStep Studio supports (the DATA step debugger needs it)
-#   2. DataStep Studio installed early, when the editor's server is already there (then the SAS programs are in
-#      color from the start, without a reload)
-#   3. the connection to SAS OnDemand prepared, when the reader gave a user ID and a home region on the
+#   2. the connection to SAS OnDemand prepared, when the reader gave a user ID and a home region on the
 #      "Create codespace" page (codespace secrets SAS_ODA_USER and SAS_ODA_REGION): they only type the password
-#   4. a short check of Java and SASPy
+#   3. a short check of Java and SASPy
+# Codespaces runs it when the editor first connects, so DataStep Studio is installed by the editor itself; installing
+# it here again would restart the editor's extensions while they start.
 # What it did is written to ~/.datastep-studio/setup.log. No step stops the codespace from starting.
 set -uo pipefail
 
@@ -22,19 +22,7 @@ else
   say "SASPy could not be installed; DataStep Studio: Check Setup offers to install it"
 fi
 
-# 2. DataStep Studio before the editor opens
-server=$(ls -d /vscode/bin/*/*/bin/code-server "$HOME"/.vscode-remote/bin/*/bin/code-server 2>/dev/null | head -1)
-if [ -n "$server" ]; then
-  if "$server" --install-extension datastep-labs.datastep-studio >>"$log" 2>&1; then
-    say "DataStep Studio installed early ($server)"
-  else
-    say "DataStep Studio not installed early; the editor installs it when it opens"
-  fi
-else
-  say "no editor server yet; the editor installs DataStep Studio when it opens"
-fi
-
-# 3. The connection profile from the codespace secrets (never a password)
+# 2. The connection profile from the codespace secrets (never a password)
 user="${SAS_ODA_USER:-}"
 region="${SAS_ODA_REGION:-}"
 if [ -n "$user" ] && [ -n "$region" ]; then
@@ -50,7 +38,6 @@ if not region:
     sys.exit(f'unknown home region "{sys.argv[2]}": use usw2, usw2-2, euw1, apse1 or apse1-2')
 with open(out, 'w') as f:
     json.dump({'name': 'SAS OnDemand', 'profile': {'connectionType': 'oda', 'region': region, 'username': user}}, f)
-print(region)
 EOF
   then
     say "connection profile SAS OnDemand prepared (region $(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["profile"]["region"])' "$studio/setup/profile.json"))"
@@ -61,7 +48,7 @@ else
   say "no SAS_ODA_USER and SAS_ODA_REGION: the reader adds the connection in Stop 0"
 fi
 
-# 4. Check
+# 3. Check
 say "Java: $(java -version 2>&1 | head -1)"
 say "Ready. Open START-HERE.md."
 exit 0
