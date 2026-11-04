@@ -27,7 +27,9 @@ The first time you open the codespace:
 2. Press **F1**, type `reload window`, and choose **Developer: Reload Window**. This is needed once: DataStep Studio
    is installed while the window opens, and only after the reload are the SAS programs in color.
 
-Then connect:
+Then connect. **If you entered your user ID and home region** when you made the codespace (`SAS_ODA_USER` and
+`SAS_ODA_REGION`), the connection is ready: DataStep Studio says *The connection profile "SAS OnDemand" from the
+setup is added and is active*. Click **Connect Now** and type your password. Otherwise:
 
 3. Press **F1**, type `connection profile`, and choose **DataStep Studio: Add New Connection Profile**.
 4. Choose **SAS OnDemand for Academics**, then your **home region**. It is in the web address of SAS Studio: an
