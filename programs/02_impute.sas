@@ -1,0 +1,24 @@
+/* Chapter 2: partial dates, imputed early (start) and late (end) */
+DATA imputed;
+  SET dates(KEEP=dtc);
+  LENGTH adtf $1;
+  yy = INPUT(SUBSTR(dtc, 1, 4), ?? 4.);
+  IF LENGTH(dtc) >= 7  THEN mm = INPUT(SUBSTR(dtc, 6, 2), ?? 2.);
+  IF LENGTH(dtc) >= 10 THEN dd = INPUT(SUBSTR(dtc, 9, 2), ?? 2.);
+  IF NOT MISSING(dd) THEN DO;
+    astdt = MDY(mm, dd, yy);
+    aendt = astdt;
+  END;
+  ELSE IF NOT MISSING(mm) THEN DO;
+    astdt = MDY(mm, 1, yy);
+    aendt = INTNX("month", astdt, 0, "end");
+    adtf  = "D";
+  END;
+  ELSE IF NOT MISSING(yy) THEN DO;
+    astdt = MDY(1, 1, yy);
+    aendt = MDY(12, 31, yy);
+    adtf  = "M";
+  END;
+  FORMAT astdt aendt DATE9.;
+  DROP yy mm dd;
+RUN;

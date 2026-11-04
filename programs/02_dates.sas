@@ -1,0 +1,15 @@
+/* Chapter 2: ISO 8601 text to SAS dates */
+DATA dates;
+  INFILE DATALINES TRUNCOVER;
+  INPUT dtc $20.;
+  full = INPUT(dtc, ?? E8601DA.);
+  IF LENGTH(dtc) >= 10 THEN dtc10 = INPUT(SUBSTR(dtc, 1, 10), ?? E8601DA.);
+  FORMAT full dtc10 DATE9.;
+DATALINES;
+2014-03-15
+2014-03-15T09:30
+2014-03
+2014
+
+;
+RUN;

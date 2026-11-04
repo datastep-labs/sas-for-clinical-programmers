@@ -1,0 +1,10 @@
+{
+  "workbench.editorAssociations": {
+    "START-HERE.md": "vscode.markdown.preview.editor",
+    "README.md": "vscode.markdown.preview.editor"
+  },
+  "workbench.startupEditor": "none",
+  "files.exclude": {
+    "**/.devcontainer": true
+  }
+}

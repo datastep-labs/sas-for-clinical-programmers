@@ -1,0 +1,60 @@
+dataset,variable,label,type,length,format,order,key
+ADSL,STUDYID,Study Identifier,C,12,,1,
+ADSL,USUBJID,Unique Subject Identifier,C,11,,2,1
+ADSL,SUBJID,Subject Identifier for the Study,C,4,,3,
+ADSL,SITEID,Study Site Identifier,C,3,,4,
+ADSL,AGE,Age,N,8,,5,
+ADSL,AGEU,Age Units,C,5,,6,
+ADSL,AGEGR1,Pooled Age Group 1,C,5,,7,
+ADSL,SEX,Sex,C,1,,8,
+ADSL,RACE,Race,C,32,,9,
+ADSL,ETHNIC,Ethnicity,C,22,,10,
+ADSL,ARM,Description of Planned Arm,C,20,,11,
+ADSL,TRT01P,Planned Treatment for Period 01,C,20,,12,
+ADSL,TRT01PN,Planned Treatment for Period 01 (N),N,8,,13,
+ADSL,TRT01A,Actual Treatment for Period 01,C,20,,14,
+ADSL,TRT01AN,Actual Treatment for Period 01 (N),N,8,,15,
+ADSL,TRTSDT,Date of First Exposure to Treatment,N,8,DATE9.,16,
+ADSL,TRTEDT,Date of Last Exposure to Treatment,N,8,DATE9.,17,
+ADSL,SAFFL,Safety Population Flag,C,1,,18,
+ADSL,ITTFL,Intent-To-Treat Population Flag,C,1,,19,
+ADSL,EFFFL,Efficacy Population Flag,C,1,,20,
+ADSL,COMP24FL,Completers of Week 24 Population Flag,C,1,,21,
+ADSL,HEIGHTBL,Baseline Height (cm),N,8,,22,
+ADSL,WEIGHTBL,Baseline Weight (kg),N,8,,23,
+ADSL,BMIBL,Baseline BMI (kg/m^2),N,8,,24,
+ADVS,USUBJID,Unique Subject Identifier,C,11,,1,1
+ADVS,ASEQ,Analysis Sequence Number,N,8,,2,
+ADVS,VSSEQ,Sequence Number,N,8,,3,5
+ADVS,VISIT,Visit Name,C,19,,4,
+ADVS,VISITNUM,Visit Number,N,8,,5,
+ADVS,PARAMCD,Parameter Code,C,8,,6,2
+ADVS,PARAM,Parameter,C,100,,7,
+ADVS,ATPT,Analysis Timepoint,C,30,,8,
+ADVS,ATPTN,Analysis Timepoint (N),N,8,,9,4
+ADVS,ADT,Analysis Date,N,8,DATE9.,10,3
+ADVS,ADY,Analysis Relative Day,N,8,,11,
+ADVS,AVISIT,Analysis Visit,C,16,,12,
+ADVS,AVISITN,Analysis Visit (N),N,8,,13,
+ADVS,AVAL,Analysis Value,N,8,,14,
+ADVS,BASE,Baseline Value,N,8,,15,
+ADVS,CHG,Change from Baseline,N,8,,16,
+ADVS,PCHG,Percent Change from Baseline,N,8,,17,
+ADVS,ABLFL,Baseline Record Flag,C,1,,18,
+ADVS,ANL01FL,Analysis Record Flag 01,C,1,,19,
+ADAE,USUBJID,Unique Subject Identifier,C,11,,1,1
+ADAE,ASEQ,Analysis Sequence Number,N,8,,2,
+ADAE,AESEQ,Sequence Number,N,8,,3,4
+ADAE,AETERM,Reported Term for the Adverse Event,C,46,,4,
+ADAE,AEDECOD,Dictionary-Derived Term,C,46,,5,3
+ADAE,AEBODSYS,Body System or Organ Class,C,67,,6,
+ADAE,AESEV,Severity/Intensity,C,8,,7,
+ADAE,AESER,Serious Event,C,1,,8,
+ADAE,ASTDT,Analysis Start Date,N,8,DATE9.,9,2
+ADAE,ASTDTF,Analysis Start Date Imputation Flag,C,1,,10,
+ADAE,AENDT,Analysis End Date,N,8,DATE9.,11,
+ADAE,TRTEMFL,Treatment Emergent Analysis Flag,C,1,,12,
+ADAE,AOCCFL,1st Occurrence of Any AE Flag,C,1,,13,
+ADAE,AOCCPFL,1st Occurrence of Preferred Term Flag,C,1,,14,
+ADAE,TRTA,Actual Treatment,C,20,,15,
+ADAE,TRTAN,Actual Treatment (N),N,8,,16,
