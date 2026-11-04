@@ -1,5 +1,8 @@
 # Start here: SAS for Clinical Programmers, in your browser
 
+> **You see this page as plain text?** Press **Ctrl+Shift+V** (on a Mac **Cmd+Shift+V**) to read it formatted, with
+> links you can click.
+
 This is the lab for the free book [SAS for Clinical Programmers](https://sas-for-clinical-programmers.pages.dev/).
 Everything is ready in this window: **DataStep Studio**, the **134 programs of the book**, and a connection to **SAS
 OnDemand for Academics**. You install nothing.
