@@ -7,10 +7,7 @@ VIEWTABLE.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/datastep-labs/sas-for-clinical-programmers?quickstart=1)
 
-1. Click the button and sign in to GitHub (a free account is enough). If the page offers **SAS_ODA_USER** and
-   **SAS_ODA_REGION**, you can enter your SAS OnDemand user ID and home region (for example `euw1`): the connection is
-   then ready when the codespace opens, and you only type your password. GitHub keeps them as secrets of your own
-   account; your password is never asked for here.
+1. Click the button and sign in to GitHub (a free account is enough).
 2. Wait a minute or two. VS Code opens in your browser with DataStep Studio, the book's programs and the lab
    [START-HERE.md](START-HERE.md).
 3. Connect to your free [SAS OnDemand for Academics](https://welcome.oda.sas.com) account and follow the lab.

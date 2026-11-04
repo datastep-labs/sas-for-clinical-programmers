@@ -4,20 +4,10 @@
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
       "version": "17"
-    },
-    "ghcr.io/devcontainers/features/sshd:1": {}
+    }
   },
   "hostRequirements": {
     "cpus": 2
-  },
-  "secrets": {
-    "SAS_ODA_USER": {
-      "description": "Optional. Your SAS OnDemand for Academics user ID, or the e-mail address you sign in with. With it and your home region, the connection is ready when the codespace opens: you only type your password.",
-      "documentationUrl": "https://welcome.oda.sas.com"
-    },
-    "SAS_ODA_REGION": {
-      "description": "Optional. Your SAS OnDemand home region: usw2, usw2-2, euw1, apse1 or apse1-2. It is in the web address of SAS Studio: odamid-euw1 means euw1. The address itself works too."
-    }
   },
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "customizations": {
